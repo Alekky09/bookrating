@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Flask
 Flask-Session
 psycopg2-binary
@@ -7,3 +8,9 @@ datetime
 werkzeug.security
 functools
 csv
+=======
+cs50
+Flask
+Flask-Session
+requests
+>>>>>>> 48a033c87744585695edfe9d4d5986930a0931fd
