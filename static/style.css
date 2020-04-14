@@ -1,0 +1,10 @@
+body{
+    background-color: rgb(243, 243, 243);
+    font-family: "Poppins", sans-serif !important;
+}
+h5 > i{
+    color: gray;
+}
+.navbar {
+    min-height: 65px !important;
+}

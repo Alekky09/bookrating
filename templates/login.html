@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block navbar %}   
+<ul class="navbar-nav ml-auto">
+    <a class="navbar-brand" href="/register">Register</a>
+</ul>
+{% endblock %}
+
+{% block main %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col">
+            <h1>Log in</h1>
+            <hr>
+
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label>
+                        Username
+                    </label>
+                    <input class="form-control" type="text" name="username">
+                </div>
+                <div class="form-group">
+                    <label>
+                        Password
+                    </label>
+                    <input class="form-control" type="password" name="password">
+                </div>
+                <button type="submit" class="btn btn-primary">Log in</button>
+            </form>
+            <hr>
+            Need to register?
+            <a href="{{ url_for('register') }}">Click here</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

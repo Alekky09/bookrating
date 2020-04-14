@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ book["title"] }}, {{ book["year"] }}
+{% endblock %}
+
+{% block navbar %}   
+<form class="form-inline col-9 mx-auto" method="POST" action="/">
+    <input class="form-control form-control-lg w-75" type="text" id="query" name="query" placeholder="Search for a book by title, author or isbn">
+    <button type="submit" class="btn btn-primary ml-2" >Search</button>
+</form>
+<ul class="navbar-nav ml-auto">
+    <a class="navbar-brand" href="/logout">Log out</a>
+</ul>
+{% endblock %}
+
+{% block main %}
+<div class="container mt-4">
+    <div class="row align-items-center justify-content-between">
+        <div class="col">
+            <h1>
+                {{ book["title"] }}
+            </h1>
+            <h4>
+                <i>{{ book["author"]}}, {{ book["year"]}}</i>
+            </h4>
+            <i>Isbn: {{ book["isbn"]}}</i>
+        </div>
+        <div class="col">
+            <h5 align=right>
+                <i><b>Goodreads stats:</b>
+                <br>
+                {{ gr_ratings["work_ratings_count"]}} ratings
+                <br>
+                {{ gr_ratings["average_rating"]}} average rating
+                </i>
+            </h5>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="container">
+    <form action="/book/{{ book['id'] }}" method="POST">
+        <div class="form-group">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="rating" id="inlineRadio1" value="1">
+                <label class="form-check-label" for="inlineRadio1">1</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="rating" id="inlineRadio2" value="2">
+                <label class="form-check-label" for="inlineRadio2">2</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="rating" id="inlineRadio3" value="3">
+                <label class="form-check-label" for="inlineRadio3">3</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="rating" id="inlineRadio3" value="4">
+                <label class="form-check-label" for="inlineRadio3">4</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="rating" id="inlineRadio3" value="5">
+                <label class="form-check-label" for="inlineRadio3">5</label>
+            </div>
+            How would you rate this book?
+        </div>
+        
+        <div class="form-group">
+            <textarea class="form-control" id="review" rows="3" name="review" placeholder="Write your review here"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Post the review</button>
+    </form>
+</div>
+<div class="container mt-5">
+{% for review in reviews %}
+    <div class="container mt-4">
+        <hr>
+        <div class="row">
+            <div class="col-3">
+                <h4 align=right>{{ review["username"]}}:</h4>
+                <h6 align=right>
+                    <i>{{ review["date"]}}</i>
+                </h6>
+            </div>
+            <div class="col-7 border-left">
+                <i>"{{ review["review"]}}"</i>
+            </div>
+            <div class="col">
+                <h6 align=right><i>Rating: {{ review["rating"] }} out of 5</i></h6>
+            </div>
+        </div>
+        
+    </div>
+{% endfor %}
+</div>
+{% endblock %}

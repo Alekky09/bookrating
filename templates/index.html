@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Index
+{% endblock %}
+
+{% block navbar %}
+  <form class="form-inline col-9 mx-auto" method="POST" action="/">
+    <input autofocus class="form-control form-control-lg w-75" type="text" id="query" name="query" placeholder="Search for a book by title, author or isbn">
+    <button type="submit" class="btn btn-primary ml-2" >Search</button>
+  </form>
+  <ul class="navbar-nav ml-auto">
+    <a class="navbar-brand" href="/logout">Log out</a>
+  </ul>
+{% endblock %}
+{% block main %}
+{% for book in results %}
+
+  <div class="card container">
+    <div class="card-body">
+      <h5 class="card-title">{{ book["title"] }}</h5>
+      <h6 class="card-subtitle"><i>{{ book["author"] }}, {{ book["year"] }}</i></h6>
+      <br>
+      <a href="/book/{{ book['id'] }}" class="btn btn-primary">Book page</a>
+    </div>
+  </div>
+
+{% endfor %}
+
+{% endblock %}
